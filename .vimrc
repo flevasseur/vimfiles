@@ -59,13 +59,6 @@ set list
 " In some files, like HTML and XML files, tabs are fine and showing them is really annoying. Disabled them.
 autocmd filetype html,xml set listchars-=tab:>.
 
-
-" Force me to use the real vim navigation key
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
-
 "statusline
 set laststatus=2
 set statusline=  " clear the statusline for when vimrc is reloaded
@@ -105,4 +98,6 @@ set statusline+=%3*total:%4*%L\
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 " Lusty-juggler
-nmap <Silent> <Leader>l :LustyJuggler<CR>
+if exists(':LustyJuggler')
+	nmap <Silent> <Leader>l :LustyJuggler<CR>
+endif
