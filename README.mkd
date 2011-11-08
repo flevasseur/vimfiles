@@ -22,10 +22,12 @@ Set the vim files
 	$ git submodule update --init
 	$ ln -s ~/.vim/.vimrc .
 
-Install command-t
+Install command-t:
+
 	$ vim command-t.vba
 
 Then source it with ":so %". Afterwards, build the C extension:
+
 	$ pushd ~/.vim/
 	$ mkdir bundle/command-t
 	$ mv ruby/ doc/ plugin/ bundle/command-t
