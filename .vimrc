@@ -50,19 +50,6 @@ set noswapfile		" No swap file
 " Copy and paste with style. F2 to copy without having problem with tabs.
 set pastetoggle=<F2>
 
-"Persistent undo
-try
-    if MySys() == "windows"
-      set undodir=C:\Windows\Temp
-    else
-      set undodir=~/.vim_runtime/undodir
-    endif
-
-    set undofile
-catch
-endtry
-
-
 " This line will make Vim set out tab characters, trailing whitespace and invisible spaces visually, and additionally use the # sign at the end of lines to mark lines that extend off-screen.
 set nowrap
 set sidescroll=4
