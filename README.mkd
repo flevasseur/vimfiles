@@ -11,7 +11,7 @@ MacPort
 
 Debian/Ubuntu
 
-	$ sudo apt-get install vim-nox
+	$ sudo apt-get install vim-nox ruby ruby-dev
 
 Set the vim files
 
@@ -21,4 +21,16 @@ Set the vim files
 	$ git clone git@github.com:flevasseur/vimfiles.git .vim
 	$ git submodule update --init
 	$ ln -s ~/.vim/.vimrc .
+
+Install command-t
+	$ vim command-t.vba
+
+Then source it with ":so %". Afterwards, build the C extension:
+	$ pushd ~/.vim/
+	$ mkdir bundle/command-t
+	$ mv ruby/ doc/ plugin/ bundle/command-t
+	$ cd bundle/command-t/ruby/command-t
+	$ ruby extconf.rb
+	$ make
+
 
