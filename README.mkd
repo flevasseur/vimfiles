@@ -3,6 +3,15 @@
 
 To use those files with Vim, you’d usually do:
 
+First, install vim with ruby support.
+
+MacPort
+	$ sudo port install vim +ruby
+
+Debian/Ubuntu
+	$ sudo apt-get install vim-nox
+
+Set the vim files
 	$ pushd ~
 	$ mv .vim .vim-backup
 	$ mkdir -p ~/.vim-local/{.vimbackup,.vimswap}/
