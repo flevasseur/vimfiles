@@ -59,7 +59,8 @@ autocmd filetype html,xml set listchars-=tab:>.
 "map <left> <nop>
 "map <right> <nop>
 
-
-
-
+" jamessan's statusline
+set laststatus=2
+set statusline=  " clear the statusline for when vimrc is reloaded
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{fugitive#statusline()}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
