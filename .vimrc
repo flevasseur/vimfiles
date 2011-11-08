@@ -3,12 +3,16 @@
 call pathogen#infect()
 call pathogen#helptags()
 
-
 " This must be first, because it changes other options as side effect
 set nocompatible
 
 " change the mapleader from \ to ,
 let mapleader=","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+nmap <leader>wq :wq!<cr>
 
 " It hides buffers instead of closing them. This means that you can have unwritten changes to a file and open a new file using :e, without being forced to write or undo your changes first. Also, undo buffers and marks are preserved while the buffer is open. This is an absolute must-have.
 set hidden
@@ -43,6 +47,22 @@ set noerrorbells         " don't beep
 set nobackup		" No backup
 set noswapfile		" No swap file
 
+" Copy and paste with style. F2 to copy without having problem with tabs.
+set pastetoggle=<F2>
+
+"Persistent undo
+try
+    if MySys() == "windows"
+      set undodir=C:\Windows\Temp
+    else
+      set undodir=~/.vim_runtime/undodir
+    endif
+
+    set undofile
+catch
+endtry
+
+
 " This line will make Vim set out tab characters, trailing whitespace and invisible spaces visually, and additionally use the # sign at the end of lines to mark lines that extend off-screen.
 set nowrap
 set sidescroll=4
@@ -59,8 +79,43 @@ autocmd filetype html,xml set listchars-=tab:>.
 "map <left> <nop>
 "map <right> <nop>
 
-" jamessan's statusline
+"statusline
 set laststatus=2
 set statusline=  " clear the statusline for when vimrc is reloaded
-set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{fugitive#statusline()}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
+function! GetCWD()
+	return expand(":pwd")
+endfunction
+
+function! IsHelp()
+	return &buftype=='help'?' (help) ':''
+endfunction
+
+function! GetName()
+	return expand("%:t")==''?'<none>':expand("%:t")
+endfunction
+
+set statusline=%3*[%1*%{GetName()}%3*]%3*
+set statusline+=%7*%{&modified?'\ (modified)':'\ '}%3*
+set statusline+=%{fugitive#statusline()}
+set statusline+=%5*%{IsHelp()}%3*
+set statusline+=%6*%{&readonly?'\ (read-only)\ ':'\ '}%3*
+set statusline+=%3*fenc:%4*%{strlen(&fenc)?&fenc:'none'}%3*\ \ 
+set statusline+=%3*ff:%4*%{&ff}%3*\ \ 
+set statusline+=%3*ft:%4*%{strlen(&ft)?&ft:'<none>'}\ \ 
+set statusline+=%3*tab:%4*%{&ts}
+set statusline+=%3*,%4*%{&sts}
+set statusline+=%3*,%4*%{&sw}
+set statusline+=%3*,%4*%{&et?'et':'noet'}\ \ 
+set statusline+=%<%3*pwd:%4*%{getcwd()}\ \ 
+set statusline+=%9*%=
+set statusline+=%3*col:%4*%c\ \ 
+set statusline+=%3*line:%4*%l\ \ 
+set statusline+=%3*total:%4*%L\ 
+
+
+" Move the cursor to its last location in the file 
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+" Lusty-juggler
+nmap <Silent> <Leader>l :LustyJuggler<CR>
