@@ -5,4 +5,5 @@ call pathogen#helptags()
 
 source $HOME/.vim/settings.vim
 source $HOME/.vim/map.vim
+source $HOME/.vim/statusline.vim
 
