@@ -46,6 +46,6 @@ set list
 " In some files, like HTML and XML files, tabs are fine and showing them is really annoying. Disabled them.
 autocmd filetype html,xml set listchars-=tab:>.
 
-" Move the cursor to its last location in the file 
+" Move the cursor to its last location in the file. Make sure you have permission on your ~.viminfo file!
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
