@@ -24,6 +24,9 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-l> <right>
 
+" Clear search-highlighted terms
+noremap <silent> <Space> :silent noh<Bar>echo<CR>
+
 " Lusty-juggler
-nmap <Leader>l :LustyJuggler<CR>
+"nmap <Leader>l :LustyJuggler<CR>
 
