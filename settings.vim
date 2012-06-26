@@ -41,7 +41,7 @@ set pastetoggle=<F2>
 set nowrap
 set sidescroll=4
 set sidescrolloff=14
-set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
+set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:»_
 set list
 " In some files, like HTML and XML files, tabs are fine and showing them is really annoying. Disabled them.
 autocmd filetype html,xml set listchars-=tab:>.
